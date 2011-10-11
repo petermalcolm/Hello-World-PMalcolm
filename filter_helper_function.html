@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+	<title>Test</title>
+	<script type="text/javascript">
+	var chocolateBars = [
+		{name: "Galaxy", manufacturer: "Mars"},
+		{name: "Snickers", manufacturer: "Mars"},
+		{name: "Crunchie", manufacturer: "Cadbury"},
+		{name: "Aero", manufacturer: "Nestle"},
+		{name: "M&Ms", manufacturer: "Mars"},
+		{name: "Chunky", manufacturer: "Nestle"},
+		{name: "Double decker", manufacturer: "Cadbury"}
+	];
+	
+	var marsChocolate = [];
+	for(var x=0; x<chocolateBars.length; x++)
+	{
+		if(chocolateBars[x].manufacturer == "Mars")
+			marsChocolate.push(chocolateBars[x]);
+	}
+	for(var x=0; x<marsChocolate.length; x++)
+		// alert(marsChocolate[x].name);
+	
+	var array_helper = {
+		filter: function(list, boolCriterion)		// PM: Ok, so this is a function, filter, that is
+		{						//  a member of array_helper
+			var matches = [];			// PM: Below, the var marsChocolate2 is an array
+			for(var x=0; x<list.length; x++)	//  that takes the returned value of array_helper.filter
+			{					//  which is matches, the return val of        ''.''^
+				if(boolCriterion(list[x]))	//  which is an array
+					matches.push(list[x]);	// PM: what is confusing about this example is that
+			}					//  filter is used twice.  It is both the function
+			return matches;				//  inside array_helper *and* the criterion
+		}						//  I'll rename it 'boolCriterion' inside filter
+	};
+	
+	var marsChocolate2 = array_helper.filter(chocolateBars, 
+		function(item) { return item.manufacturer == "Mars" });
+
+	for(var x=0; x<marsChocolate2.length; x++)
+		document.write(marsChocolate2[x].name + ', ');
+	</script></head></html>

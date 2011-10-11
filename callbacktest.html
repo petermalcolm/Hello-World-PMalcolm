@@ -1,0 +1,43 @@
+<html>
+<head>
+<script type="text/javascript">
+
+function doSomething() {
+  window.alert("something!")
+}
+
+///////////////////////////////  following code from
+///////////////////////////////  thoughtgraff.tumblr.com
+///////////////////////////////  (J. Michael Wilson)
+///////////////////////////////  THOUGHTGRAFF | Javascript Callbacks
+
+function generic(func) {
+// Do some thing here
+var pass_var = 'Hello world!';
+func(pass_var);
+// Here you can easily pass the callback a variable.
+}
+
+// The callback function must return an anonymous
+// function. You can do this buy defining a function that
+// returns a closure ( see closure ) or by passing a
+// defined function from within an anonymous one.
+
+function callback(pass_var) {
+return function(pass_var) {
+window.alert('This was defined in callback:' + pass_var);
+};
+}
+
+// generic(function(pass_var) {
+// alert(pass_var);
+// });
+
+</script>
+</head>
+<body>
+<button onclick="doSomething()">Do Something</button> &nbsp;&nbsp;
+<button onclick="generic(callback())">Test Generic function with callback() CallBack</button> &nbsp;&nbsp;
+
+</body>
+</html>
